@@ -11,13 +11,10 @@ async function init() {
     controls: ["fullscreenControl", "typeSelector", "zoomControl"],
   })
 
-  let panoramaManager: ymaps.panorama.Manager | null = null
+  let panoramaManager = await myMap.getPanoramaManager()
 
-  const togglePanorama = async (event) => {
+  const togglePanorama = (event) => {
     if (event.get("type") === "select") {
-      if (!panoramaManager)
-        panoramaManager = await myMap.getPanoramaManager()
-
       panoramaManager.enableLookup()
     } else {
       panoramaManager.disableLookup()
