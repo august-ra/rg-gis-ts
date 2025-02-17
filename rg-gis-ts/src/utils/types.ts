@@ -17,5 +17,26 @@ export interface GisRecord {
 
 export type GisRecordKey = keyof GisRecord
 
+export interface GeoJSON {
+  type: "FeatureCollection",
+  features: {
+    type: "Feature",
+    id:   string,
+    geometry: {
+      type:        "Point",
+      coordinates: [number, number],
+    },
+    properties: {
+      balloonContentHeader: string,
+      balloonContentBody :  string,
+    },
+    options: {
+      iconColor:             string,
+      preset:                string,
+      hideIconOnBalloonOpen: boolean,
+    },
+  },
+}
+
 
 export type FilterOptions = Record<string, boolean>

@@ -8,7 +8,14 @@ async function init() {
   const myMap = new ymaps.Map("map", {
     center:   [55.76, 37.64],
     zoom:     10,
-    controls: ["fullscreenControl", "typeSelector", "zoomControl"],
+    controls: ["fullscreenControl", "typeSelector"],
+  })
+
+  myMap.controls.add("zoomControl", {
+    position: {
+      left:   10,
+      bottom: 50,
+    },
   })
 
   let panoramaManager = await myMap.getPanoramaManager()
@@ -21,7 +28,7 @@ async function init() {
     }
   }
 
-  const panoramaButton = new ymaps.control.Button("Панорама")
+  const panoramaButton = new ymaps.control.Button("Панорамы")
   panoramaButton.events.add(["select", "deselect"], togglePanorama)
 
   myMap.controls.add(panoramaButton, { float: "right" })
@@ -34,7 +41,7 @@ async function init() {
 
   const data = await gisApi.getGIS()
 
-  objectManager.add(gisApi.getGeoJSON(data.filter((item) => selectedAreas.includes(item.area))))
+  objectManager.add(gisApi.getGeoJSON(data))
 
   myMap.geoObjects.add(objectManager)
 }

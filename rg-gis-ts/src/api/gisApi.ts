@@ -1,7 +1,7 @@
 import { get, ref, set } from "firebase/database"
 import { db } from "./firebaseConfig"
 
-import type { GisInfo, GisRecord } from "../utils/types"
+import type { GeoJSON, GisInfo, GisRecord } from "../utils/types"
 
 
 export const gisApi = {
@@ -40,7 +40,7 @@ export const gisApi = {
     return "#1e98ff"
   },
 
-  getGeoJSON(data: GisInfo) {
+  getGeoJSON(data: GisInfo): GeoJSON {
     const objects = []
     const uniquePoint = {}
 
